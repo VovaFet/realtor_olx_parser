@@ -5,16 +5,9 @@ url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/ki
 headers = {
     "User-Agent": generate_user_agent()
 }
-# req = requests.get(url, headers = headers)
-# print(req)
-
-# def links_generator():
-#     for page_number in range(0,100):
-#         req = requests.get(url+'page_number', headers = headers)
-#         if req == '<Response [200]>':
-#             print(page_number)
 def links_generator():
     # global url
+    generated_url_list = []
     req = requests.get(url, headers=headers).text
     soup = BeautifulSoup(req, "lxml")
     page_number = soup.find_all("a", class_="block br3 brc8 large tdnone lheight24")
@@ -27,8 +20,8 @@ def links_generator():
         # print(page)
         for gg in range(1,page+1):
             generated_url = url+'?page='+str(gg)
-            print(generated_url)
-        return(generated_url)
-
+            generated_url_list.append(generated_url)
+        print(generated_url_list)
+    return(generated_url_list)
 links_generator()
 

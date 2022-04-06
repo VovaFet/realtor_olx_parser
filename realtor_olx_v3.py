@@ -30,11 +30,12 @@ def links_generator(url):
     else:
         for _ in page_number:
             page = int(_.find("span").text)
-        # print(page)
+
         for gg in range(1,page+1):
             generated_url = url+'?page='+str(gg)
-            list_of_generated_urls.append(generated_url)
-        # print(list_of_generated_urls)
+            list_of_generated_urls.append([generated_url, gg])
+            # print(list_of_generated_urls)
+
         return list_of_generated_urls
 
 
@@ -94,22 +95,21 @@ def url_parser(generated_url):
                 "Название объявления": ads_title_list[i],
                 "Ссылка": ads_links_list[i],
         })
-
     return all_all
     
-def json_writer(all_all):
-
-    with open(f"project_data_page.json", "a", encoding="utf-8") as file:
+def json_writer(all_all, gg):
+    with open(f"data/{gg}_page_data.json", "w", encoding="utf-8") as file:
         json.dump(all_all, file, indent=4, ensure_ascii=False)
+ 
     
 if __name__ == "__main__":
 
     while True:
         list_of_generated_urls = links_generator(url)
-        for generated_url in list_of_generated_urls:
-            iteration+=1
+        for (generated_url, gg) in list_of_generated_urls:
             all_all = url_parser(generated_url)
-            json_writer(all_all)
+            json_writer(all_all, gg)
+            iteration+=1
             if iteration == len(list_of_generated_urls):
                 _ = system('clear')
                 print("PARSING ENDED")
