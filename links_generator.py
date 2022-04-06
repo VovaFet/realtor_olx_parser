@@ -11,6 +11,7 @@ def links_generator():
     req = requests.get(url, headers=headers).text
     soup = BeautifulSoup(req, "lxml")
     page_number = soup.find_all("a", class_="block br3 brc8 large tdnone lheight24")
+    
     if page_number==[]:
         generated_url = url
     else:
@@ -21,5 +22,6 @@ def links_generator():
             generated_url_list.append(generated_url)
         # print(generated_url_list)
     return(generated_url_list)
+
 links_generator()
 
