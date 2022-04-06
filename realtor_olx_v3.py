@@ -14,6 +14,7 @@ start_time = time.strftime("%H:%M:%S", time.localtime())
 url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/'
 iteration = 0
 # count = 0
+
 # def iteration_def(iteration):
 #     iteration += 1
 #     return iteration
