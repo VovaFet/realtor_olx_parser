@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from time import sleep
 import time
-# import csv
 from os import system
 import json
 from user_agent import generate_user_agent
@@ -12,7 +11,7 @@ headers = {
     }
 start_time = time.strftime("%H:%M:%S", time.localtime())
 url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/'
-iteration = 0
+# iteration = 0
 # count = 0
 
 # def iteration_def(iteration):
@@ -27,7 +26,6 @@ def links_generator(url):
     page_number = soup.find_all("a", class_="block br3 brc8 large tdnone lheight24")
     if page_number==[]:
         generated_url = url
-        # print(generated_url)
     else:
         for _ in page_number:
             page = int(_.find("span").text)
@@ -35,8 +33,6 @@ def links_generator(url):
         for gg in range(1,page+1):
             generated_url = url+'?page='+str(gg)
             list_of_generated_urls.append([generated_url, gg])
-            # print(list_of_generated_urls)
-
         return list_of_generated_urls
 
 
@@ -72,8 +68,6 @@ def url_parser(generated_url):
         time_time.append(_)
         time_ = time_time[::-2]
         time_ = time_[::-1]
-        # time_string = ' '.join(map(str, time_))
-        # ads_time_list.append(time_)
         
     for title in ads_title:
         title = title.text.strip()
