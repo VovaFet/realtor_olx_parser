@@ -101,7 +101,6 @@ def json_writer(all_all):
 
     with open(f"project_data_page.json", "a", encoding="utf-8") as file:
         json.dump(all_all, file, indent=4, ensure_ascii=False)
-    
 if __name__ == "__main__":
 
     while True:
