@@ -10,7 +10,7 @@ headers = {
     "User-Agent": generate_user_agent()
     }
 start_time = time.strftime("%H:%M:%S", time.localtime())
-url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/kiev/'
+url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/svetlovodsk/'
 # iteration = 0
 # count = 0
 
@@ -25,11 +25,14 @@ def links_generator(url):
     soup = BeautifulSoup(req, "lxml")
     page_number = soup.find_all("a", class_="block br3 brc8 large tdnone lheight24")
     if page_number==[]:
+        print("Менее одной страницы объявлений")
         generated_url = url
+        gg = 1
+        list_of_generated_urls.append([generated_url, gg])
+        return list_of_generated_urls
     else:
         for _ in page_number:
             page = int(_.find("span").text)
-
         for gg in range(1,page+1):
             generated_url = url+'?page='+str(gg)
             list_of_generated_urls.append([generated_url, gg])
@@ -100,6 +103,7 @@ def json_writer(all_all, gg):
 if __name__ == "__main__":
 
     while True:
+        iteration = 0
         list_of_generated_urls = links_generator(url)
         for (generated_url, gg) in list_of_generated_urls:
             all_all = url_parser(generated_url)
