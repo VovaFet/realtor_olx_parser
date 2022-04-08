@@ -10,7 +10,7 @@ headers = {
     "User-Agent": generate_user_agent()
     }
 start_time = time.strftime("%H:%M:%S", time.localtime())
-url = 'https://www.olx.ua/nedvizhimost/kvartiry/dolgosrochnaya-arenda-kvartir/svetlovodsk/'
+url = 'https://www.olx.ua/transport/legkovye-avtomobili/vaz/'
 # iteration = 0
 # count = 0
 
@@ -30,6 +30,7 @@ def links_generator(url):
         gg = 1
         list_of_generated_urls.append([generated_url, gg])
         return list_of_generated_urls
+    
     else:
         for _ in page_number:
             page = int(_.find("span").text)
@@ -49,6 +50,7 @@ def url_parser(generated_url):
     ads_links_list = []
     ads_place_list = []
     time_time = []
+    
     # now = time.strftime("%H:%M:%S", time.localtime())
     req = requests.get(generated_url, headers=headers).text
     soup = BeautifulSoup(req, "lxml")
@@ -96,7 +98,7 @@ def url_parser(generated_url):
     return all_all
     
 def json_writer(all_all, gg):
-    with open(f"data/{gg}_page_data.json", "w", encoding="utf-8") as file:
+    with open(f"data/{gg}_page.json", "w", encoding="utf-8") as file:
         json.dump(all_all, file, indent=4, ensure_ascii=False)
  
     

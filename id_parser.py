@@ -17,7 +17,7 @@ def id_extractor(url):
         req = requests.get(url, headers = headers).text
         soup = BeautifulSoup(req, "lxml")
         id_number = soup.find("span", class_="css-9xy3gn-Text eu5v0x0")
-        id_number = id_number.text
+        id_number = id_number.text[4:]
         
         
         print('--------------')
