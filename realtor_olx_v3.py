@@ -71,8 +71,7 @@ def url_parser(generated_url):
     for _ in ads_time:
         _ = _.text.strip().split("\n")[3]
         time_time.append(_)
-        time_ = time_time[::-2]
-        time_ = time_[::-1]
+        time_ = time_time[1::2]
         
     for title in ads_title:
         title = title.text.strip()

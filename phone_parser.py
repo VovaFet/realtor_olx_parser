@@ -22,4 +22,3 @@ def phone_parser():
 
     req_get = requests.get(f'https://www.olx.ua/api/v1/offers/{id}/limited-phones/', headers=headers).text.replace('{"data":{"phones":["','')\
         .replace('"]}}','').replace(' ', '').replace('"', '')
-

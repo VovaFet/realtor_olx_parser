@@ -26,7 +26,7 @@ def id_extractor(url):
         
     except(AttributeError):
         # id_extractor(url)
-        print('XXAXX')
+        print('Problem')
 
 if __name__ == "__main__":
     while True:

@@ -21,13 +21,13 @@ for place in ads_place:
 
 
 ads_time = soup.find_all("div", class_="space rel")
-
+time_time = []
 for _ in ads_time:
-    time_time = []
+
     _ = _.text.strip().split("\n")[3]
     time_time.append(_)
-    time_ = time_time[::-2]
-    time_ = time_[::-1]
+    time_ = time_time[1::2]
+    # time_ = time_[::-1]
     # time_ = ' '.join(map(str, time_))
 # print(len(time_))
     
@@ -38,5 +38,5 @@ for _ in ads_time:
     # find_all("small", class_="breadcrumb x-normal")
     # print(time_)
     # print(x)
-name = url[-1]
-print(name)
+# name = url[-1]
+print(time_)

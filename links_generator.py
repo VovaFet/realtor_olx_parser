@@ -24,4 +24,3 @@ def links_generator():
     return(generated_url_list)
 
 links_generator()
-
